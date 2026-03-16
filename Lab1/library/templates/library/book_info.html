@@ -1,0 +1,47 @@
+{% include "includes/header.html" %}
+
+<h1>{{ book.title }}</h1>
+
+{% if book.description %}
+<div class="card">
+    <p class="meta">Description</p>
+    <p>{{ book.description }}</p>
+</div>
+{% endif %}
+
+<div class="card">
+    <p class="meta">Publication</p>
+    <p><strong>Published:</strong> {{ book.publication_date }}</p>
+    <p><strong>Publisher:</strong> {{ book.publisher.name }}</p>
+</div>
+
+<div class="card">
+    <p class="meta">Authors</p>
+    <ul class="list">
+        {% for author in book.authors.all %}
+        <li>{% include "library/_author_link.html" with author=author %}</li>
+        {% empty %}
+        <li>No authors</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card">
+    <p class="meta">Availability</p>
+    <p><strong>Total:</strong> {{ book.count }}</p>
+    <p><strong>Available:</strong> {{ book.available_count }}</p>
+</div>
+
+{% if request.user.is_authenticated %}
+    {% if active_loan %}
+    <form method="post" action="{% url 'return_book' book.id %}">
+        {% csrf_token %}
+        <button class="button" type="submit">Return</button>
+    </form>
+    {% else %}
+    <form method="post" action="{% url 'borrow_book' book.id %}">
+        {% csrf_token %}
+        <button class="button button-primary" type="submit">Borrow</button>
+    </form>
+    {% endif %}
+{% endif %}

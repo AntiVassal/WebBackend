@@ -1,0 +1,21 @@
+{% include "includes/header.html" %}
+
+<h1>Library overview</h1>
+
+<div class="card">
+    <p class="meta">Browse</p>
+    <ul class="list">
+        <li>
+            <a href="/accounts/">Accounts</a>
+            <span class="badge">{{ users_count }}</span>
+        </li>
+        <li>
+            <a href="/library/books/">Books</a>
+            <span class="badge">{{ books_count }}</span>
+        </li>
+        <li>
+            <a href="/library/authors/">Authors</a>
+            <span class="badge">{{ authors_count }}</span>
+        </li>
+    </ul>
+</div>

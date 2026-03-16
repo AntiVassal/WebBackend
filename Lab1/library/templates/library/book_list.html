@@ -1,0 +1,15 @@
+{% include "includes/header.html" %}
+
+<h1>Books</h1>
+
+<ul class="list">
+    {% for book in books %}
+    <li>
+        <div><strong>{% include "library/book_link.html" with book=book %}</strong></div>
+        <div class="meta">Published {{ book.publication_date }} · {{ book.publisher.name }}</div>
+        <div class="meta">Available: {{ book.available_count }} / {{ book.count }}</div>
+    </li>
+    {% empty %}
+    <li>No books</li>
+    {% endfor %}
+</ul>

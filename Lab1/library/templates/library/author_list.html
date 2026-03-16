@@ -1,0 +1,16 @@
+{% include "includes/header.html" %}
+
+<h1>Authors</h1>
+
+<ul class="list">
+    {% for author in authors %}
+    <li>
+        <div><strong>{% include "library/_author_link.html" with author=author %}</strong></div>
+        {% if author.about %}
+        <div class="meta">{{ author.about }}</div>
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>No authors</li>
+    {% endfor %}
+</ul>

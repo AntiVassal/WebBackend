@@ -1,0 +1,24 @@
+{% include "includes/header.html" %}
+
+<h1>{{ author.first_name }} {{ author.last_name }}</h1>
+
+{% if author.about %}
+<div class="card">
+    <p class="meta">About</p>
+    <p>{{ author.about }}</p>
+</div>
+{% endif %}
+
+<div class="card">
+    <p class="meta">Books</p>
+    <ul class="list">
+        {% for book in books %}
+        <li>
+            <div><strong>{% include "library/book_link.html" with book=book %}</strong></div>
+            <div class="meta">Published {{ book.publication_date }} · {{ book.publisher.name }}</div>
+        </li>
+        {% empty %}
+        <li>No books</li>
+        {% endfor %}
+    </ul>
+</div>

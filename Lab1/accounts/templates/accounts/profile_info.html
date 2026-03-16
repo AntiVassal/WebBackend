@@ -1,0 +1,23 @@
+{% include "includes/header.html" %}
+
+<h1>{{ user.username }}</h1>
+
+<p>Books on hand: {{ active_count }}</p>
+
+<h2>Current books</h2>
+<ul>
+    {% for loan in active_loans %}
+    <li>{% include "library/book_link.html" with book=loan.book %}</li>
+    {% empty %}
+    <li>No books</li>
+    {% endfor %}
+</ul>
+
+<h2>Read books</h2>
+<ul>
+    {% for loan in returned_loans %}
+    <li>{% include "library/book_link.html" with book=loan.book %}</li>
+    {% empty %}
+    <li>No books</li>
+    {% endfor %}
+</ul>

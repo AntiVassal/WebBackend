@@ -1,0 +1,13 @@
+{% include "includes/header.html" %}
+
+<h1>Users</h1>
+
+<ul class="list">
+    {% for user in users %}
+    <li>
+        <div><strong>{% include "accounts/_user_link.html" with user=user %}</strong></div>
+    </li>
+    {% empty %}
+    <li>No users</li>
+    {% endfor %}
+</ul>
